@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Peleas.unity
+    guid: 00a64fc53fec62645b0e0723e8b418d2
   m_configObjects: {}

@@ -19,14 +19,14 @@ public class ReferenciaAlPersonajePlayer : MonoBehaviour
     private float PorcentajeDeVidaRestanteDelPersonaje()
     {
         float valor100porciento = cienPorcientoDeVidaDePlayer;
-        float vidaRestante = personajeSeleccionado.GetComponent<InterfazDeMetodosGenericosParaAcciones>().GetVida();
+        float vidaRestante = personajeSeleccionado.GetComponent<InterfazDeMetodosGenericosParaAcciones>().Vida;
         //Debug.Log("100% " + valor100porciento + " vida restante " + vidaRestante+" divicion "+ (vidaRestante / valor100porciento));
         return vidaRestante / valor100porciento;
     }
 
     public void AgregarPersonajeAlUI(GameObject personaje)
     {
-        cienPorcientoDeVidaDePlayer = personaje.GetComponent<InterfazDeMetodosGenericosParaAcciones>().GetVida();
+        cienPorcientoDeVidaDePlayer = personaje.GetComponent<InterfazDeMetodosGenericosParaAcciones>().Vida;
         personajeSeleccionado = personaje;
     }
 }

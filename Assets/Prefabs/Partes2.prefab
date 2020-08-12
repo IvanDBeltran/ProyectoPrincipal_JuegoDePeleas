@@ -1130,6 +1130,7 @@ GameObject:
   - component: {fileID: 6724071895420076316}
   - component: {fileID: 957083089}
   - component: {fileID: 2506328745452764299}
+  - component: {fileID: 7749680663019982575}
   m_Layer: 0
   m_Name: Partes2
   m_TagString: Untagged
@@ -1249,9 +1250,6 @@ MonoBehaviour:
   deltaTimeLocal: 0
   alturamax: 0
   comenzarContar: 0
-  ordencreciente: 0
-  punio: 0
-  patada: 0
   estaEnPiso: 0
   playerNumber: 1
   movimientoInyectado: 0
@@ -1292,6 +1290,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otroPlayer: {fileID: 0}
+--- !u!114 &7749680663019982575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8269654462751810064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e2cbf909ffa9294098a4f3eacb895a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8269654462806292304
 GameObject:
   m_ObjectHideFlags: 0
