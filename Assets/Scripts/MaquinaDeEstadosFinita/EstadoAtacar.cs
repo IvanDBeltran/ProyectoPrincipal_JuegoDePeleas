@@ -9,17 +9,22 @@ public class EstadoAtacar : BaseMaquinaEstadosFinita
     public override void Start()
     {
         base.Start();
-        if ((botonPrecionado == patadaDebil || botonPrecionado == patadaFuerte) && !accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo)
+        if ((botonPrecionado == patadaDebil || botonPrecionado == patadaFuerte) && !accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo /*&& !accionesDelPersonaje.IsFireBall*/)
         {
             accionesDelPersonaje.IsPatadaActivo = true;
             componenteDeAnimacion.SetBool("patada", true);
         }
 
-        if ((botonPrecionado == punioDebil || botonPrecionado == punioFuerte) && !accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo)
+        if ((botonPrecionado == punioDebil || botonPrecionado == punioFuerte) && !accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo/* && !accionesDelPersonaje.IsFireBall*/)
         {
             accionesDelPersonaje.IsPunioActivo = true;
             componenteDeAnimacion.SetBool("punio", true);
         }
+
+        /*if (!accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo && accionesDelPersonaje.IsFireBall)
+        {
+            componenteDeAnimacion.SetTrigger("fireball");
+        }*/
     }
     public override void Salir()
     {

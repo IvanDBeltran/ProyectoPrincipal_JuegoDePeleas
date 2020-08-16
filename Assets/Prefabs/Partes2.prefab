@@ -1131,9 +1131,10 @@ GameObject:
   - component: {fileID: 957083089}
   - component: {fileID: 2506328745452764299}
   - component: {fileID: 7749680663019982575}
+  - component: {fileID: 4317995433159753749}
   m_Layer: 0
   m_Name: Partes2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1219,7 +1220,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8269654462751810064}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 267538a0ae7896441a2466191a737456, type: 3}
   m_Name: 
@@ -1240,19 +1241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6c27c9b1d9bcb479e76ec9f1aa1370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  speedJump: 10
-  direccion: 0
-  min: 0
-  max: 0
-  x: 0
-  y: 0
-  deltaTimeLocal: 0
-  alturamax: 0
-  comenzarContar: 0
-  estaEnPiso: 0
-  playerNumber: 1
-  movimientoInyectado: 0
+  tiempoDeTomaDeControl: 0.1
+  stackMaximo: 7
 --- !u!114 &6724071895420076316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1277,6 +1267,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f08153fb7f438341a4db9e346c06f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: 0
+  tiempoVulnerable: 0.1
+  tiempoRecuperacion: 0.1
+  tiempoGolpeado: 0.1
+  fuerzaGolpeDebil: 800
+  fuerzaGolpeFuerte: 1000
 --- !u!114 &2506328745452764299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,6 +1298,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2cbf909ffa9294098a4f3eacb895a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oponente: {fileID: 0}
+--- !u!114 &4317995433159753749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8269654462751810064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff9f884ea4757a48ab280a81281625a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNumber: 1
+  FueGolpeado: 0
+  letrero: {fileID: 0}
+  cantidadDeGolpes: 0
 --- !u!1 &8269654462806292304
 GameObject:
   m_ObjectHideFlags: 0

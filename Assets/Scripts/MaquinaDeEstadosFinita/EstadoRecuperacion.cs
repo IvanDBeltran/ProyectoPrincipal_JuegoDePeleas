@@ -2,35 +2,38 @@
 using System.Collections;
 using System;
 
-public class EstadoVulnerable : BaseMaquinaEstadosFinita
+public class EstadoRecuperacion : BaseMaquinaEstadosFinita
 {
-    private float deltaTimeLocal;
+    private float deltaTimeLocal = 0;
+    private bool termino;
     public override void Start()
     {
         base.Start();
-        deltaTimeLocal = 0;
     }
     public override void Salir()
     {
-        //
+        
     }
 
     public override void Update()
     {
         deltaTimeLocal += Time.deltaTime;
-        //Siempre hay que verificar los cambios
+        termino = deltaTimeLocal >= accionesDelPersonaje.TiempoRecuperacion;
         VerificarCambios();
     }
 
     public override Type VerficarTransiciones()
     {
-        if( deltaTimeLocal >= accionesDelPersonaje.TiempoVulnerable)
+        if (termino)
         {
+            oponente.GetComponent<DatosPersistentesDelPlayer>().CantidadDeGolpes = 0;
+            //desactivamos el letrero
+            oponente.GetComponent<DatosPersistentesDelPlayer>().OcultarLetreroDeCombos();
             return typeof(EstadoEstar);
         }
         if (player.FueGolpeado)
         {
-            Debug.Log("Paso a Golpeado");
+            //Debug.Log("Paso a Golpeado");
             return typeof(EstadoGolpeado);
         }
         return GetType();

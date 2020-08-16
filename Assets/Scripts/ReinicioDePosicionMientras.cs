@@ -12,14 +12,14 @@ public class ReinicioDePosicionMientras : MonoBehaviour
         //positivo para ir a la derecha
         if((retorno.transform.position - transform.position).x < -1)
         {
-            GetComponent<MovimientoGenerico>().movimientoInyectado = -1;
+            GetComponent<BaseMaquinaEstadosFinita>().MovimientoInyectado = -1;
         }else if ((retorno.transform.position - transform.position).x > 1)
         {
-            GetComponent<MovimientoGenerico>().movimientoInyectado = 1;
+            GetComponent<BaseMaquinaEstadosFinita>().MovimientoInyectado = 1;
         }
         else
         {
-            GetComponent<MovimientoGenerico>().movimientoInyectado = 0;
+            GetComponent<BaseMaquinaEstadosFinita>().MovimientoInyectado = 0;
         }
     }
 }

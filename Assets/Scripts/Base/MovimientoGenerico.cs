@@ -1,78 +1,74 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MovimientoGenerico : MonoBehaviour
 {
-    public float speed = 2;
-    public float speedJump, direccion;
+    private bool comenzarContar, logeoDeSalto;
     private Rigidbody2D rb;
+    private float min, max, x, y, deltaTimeLocal, alturamax, deltaTimeLocalParaControl;
+    private BaseMaquinaEstadosFinita maquina;
+    [Range(0f, 2f)]
     [SerializeField]
-    private float min, max, x,y, deltaTimeLocal, alturamax;
+    private float tiempoDeTomaDeControl;
     [SerializeField]
-    private bool comenzarContar, estaEnPiso;
-    public int playerNumber = 1;
-    private string player;
-    private string baseNombreHorizontal = "Horizontal_Player";
-    private string baseNombreVertical = "Vertical_Player";
-    public float movimientoInyectado = 0;
-    //Horizontal_Player1
+    private Queue<string> palancas;
+    [SerializeField]
+    private int stackMaximo;
+    [SerializeField]
+    private KeyCode botonPrecionado;
+
     private void Start()
     {
+        //Todo el codigo aqui
         min = -1f;
         max = 1f;
-        estaEnPiso = true;
         rb = GetComponent<Rigidbody2D>();
         deltaTimeLocal = min;
-        if(playerNumber == 1)
-        {
-            player = "1";
-        }
-        else if (playerNumber == 2)
-        {
-            player = "2";
-        }
-        baseNombreHorizontal += player;
-        baseNombreVertical += player;
+        maquina = GetComponent<BaseMaquinaEstadosFinita>();
+        palancas = new Queue<string>();
     }
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!comenzarContar)
         {
             if (GetMovimientoDelObjeto() > 0)
             {
                 x = 1;
-                //derecha pero ya no, porque ahora debe mirar siempre al otro player
-                //transform.rotation = new Quaternion(0, 0, 0, 0);
+                LogearComandosIngresados();
             }
             if (GetMovimientoDelObjeto() < 0)
             {
                 x = -1;
-                //izqueirda pero ya no, porque ahora debe mirar siempre al otro player
-                //transform.rotation = new Quaternion(0, 180, 0, 0);
+                LogearComandosIngresados();
             }
             if (GetMovimientoDelObjeto() == 0)
             {
                 x = 0;
             }
-            if (Input.GetAxis(baseNombreVertical) > 0)
+            if (Input.GetAxis(maquina.Vertical) > 0)
             {
-                GetComponent<Animator>().SetTrigger("saltar");
-                estaEnPiso = false;
-                GetComponent<Animator>().SetBool("tocarPiso", false);
+                maquina.ComponenteAnimacion.SetTrigger("saltar");
+                maquina.ComponenteAnimacion.SetBool("tocarPiso", false);
+                maquina.AccionesDelPersonaje.EstaEnElPiso = false;
                 comenzarContar = true;
+                LogearComandosIngresados();
             }
+            else if (Input.GetAxis(maquina.Vertical) < 0)
+            {
+                LogearComandosIngresados();
+            }
+            deltaTimeLocalParaControl += Time.deltaTime;
         }
-
 
         if (comenzarContar)
         {
-            
-            deltaTimeLocal += (Time.deltaTime*2);
+
+            deltaTimeLocal += (Time.deltaTime * 2);
             //ir modificando a una funcion matematica mas suave en su movimiento
-            y = Mathf.Cos(deltaTimeLocal) * speedJump;
+            y = Mathf.Cos(deltaTimeLocal) * maquina.AccionesDelPersonaje.SpeedJump;
             //Como por ejemplo
             //2x^(3)+2
             //y = ((2 * Mathf.Pow(deltaTimeLocal, 3)) + 2) * speedJump;
@@ -88,26 +84,167 @@ public class MovimientoGenerico : MonoBehaviour
             {
                 ResetObject();
             }
+            LogearComandosIngresados();
         }
         else
         {
             y = rb.velocity.y;
         }
-
-        rb.velocity = new Vector2(x * speed, y);
+        rb.velocity = new Vector2(x * maquina.AccionesDelPersonaje.Speed, y);
         //rb.velocity = new Vector2(x * speed, rb.velocity.y);
         GetComponent<Animator>().SetFloat("velocidad", Mathf.Abs(rb.velocity.x));
     }
 
-    private float GetMovimientoDelObjeto()
+    public string CardinalidadEscritaHorizontal()
     {
-        if(movimientoInyectado != 0)
+        if (GetMovimientoDelObjeto() > 0)
         {
-            return movimientoInyectado;
+            if (GetComponent<BaseMaquinaEstadosFinita>().CardinalidadDeHaciaAtras() > 0)
+            {
+                return SecuenciasPermitidas.ATRAS;
+            }
+            else
+            {
+                return SecuenciasPermitidas.DELANTE;
+            }
+        }else if (GetMovimientoDelObjeto() < 0)
+        {
+            if (GetComponent<BaseMaquinaEstadosFinita>().CardinalidadDeHaciaAtras() < 0)
+            {
+                return SecuenciasPermitidas.ATRAS;
+            }
+            else
+            {
+                return SecuenciasPermitidas.DELANTE;
+                
+            }
+        }else
+        {
+            return SecuenciasPermitidas.VACIO;
+        }
+    }
+
+    public string CardinalidadEscritaVertical()
+    {
+        if (Input.GetAxis(maquina.Vertical) > 0)
+        {
+            return SecuenciasPermitidas.ARRIBA;
+        }
+        else if (Input.GetAxis(maquina.Vertical) < 0)
+        {
+            return SecuenciasPermitidas.ABAJO;
         }
         else
         {
-            return Input.GetAxis(baseNombreHorizontal);
+            return SecuenciasPermitidas.VACIO;
+        }
+    }
+
+    public void LogearComandosIngresados(KeyCode control)
+    {
+        botonPrecionado = control;
+        LogearComandosIngresados();
+    }
+    public void LogearComandosIngresados()
+    {
+        if (deltaTimeLocalParaControl < tiempoDeTomaDeControl || botonPrecionado != KeyCode.None)
+        {
+            string loQueVamosLogear;
+
+            if (maquina.PatadaDebil == botonPrecionado)
+            {
+                loQueVamosLogear = SecuenciasPermitidas.PATADADEBIL;
+            }else if (maquina.PatadaFuerte == botonPrecionado)
+            {
+                loQueVamosLogear = SecuenciasPermitidas.PATADAFUERTE;
+            }else if (maquina.PunioDebil == botonPrecionado)
+            {
+                loQueVamosLogear = SecuenciasPermitidas.PUNIODEBIL;
+            }else if (maquina.PunioFuerte == botonPrecionado)
+            {
+                loQueVamosLogear = SecuenciasPermitidas.PUNIOFUERTE;
+            }
+            else
+            {
+                loQueVamosLogear = CardinalidadEscritaHorizontal() + CardinalidadEscritaVertical();
+            }
+
+            //comprobar si el que vamos a ingresar ya esta en la ultima posicion
+            if (palancas.Count >= 1)
+            {
+                if (!palancas.Last().Equals(loQueVamosLogear))
+                {
+                    palancas.Enqueue(loQueVamosLogear);
+                }
+            }
+            else
+            {
+                palancas.Enqueue(loQueVamosLogear);
+            }
+            //seteamos el boton para que regrese a su estado original! sellado magico!!!!!
+            botonPrecionado = KeyCode.None;
+            if (palancas.Count > stackMaximo)
+            {
+                palancas.Dequeue();
+            }
+            //analizaremos lo que esta guardado, contra lo que tenemos almacenado en el diccionario de secuencias
+
+            DetectorDeConvinaciones();
+            //Debug.LogWarning("");
+        }
+        else
+        {
+            //Debug.LogWarning(">>>>>"+ deltaTimeLocalParaControl);
+            deltaTimeLocalParaControl = 0;
+        }
+
+    }
+
+    private void DetectorDeConvinaciones()
+    {
+        foreach (KeyValuePair<string, Queue<string>> result in GetComponent<InterfazDeMetodosGenericosParaAcciones>().ListadoDeSecuencias)
+        {
+            int i = 0;//.ToList()[i]
+            foreach (string stack in palancas)
+            {
+                if (stack.Equals(result.Value.ToList()[i]))
+                {
+                    i++;
+                    //continue;
+                }
+                else
+                {
+                    break;
+                }
+                Debug.Log(result.Value.ToList().Count +" - "+ i+ " stack "+ stack);
+                if (result.Value.ToList().Count == i)
+                {
+                    //instaciamos el objeto
+                    //llenamos los datos que le falten (padre)
+                    Debug.Log(result.Key);
+                    GameObject fireBall = GetComponent<InterfazDeMetodosGenericosParaAcciones>().FireBallPrefab;
+                    GetComponent<InterfazDeMetodosGenericosParaAcciones>().IsFireBall = true;
+                    Instantiate(fireBall, gameObject.transform.position, fireBall.transform.rotation).GetComponent<ReferenciaAlPadre>().padre = gameObject;
+                }
+            }
+        }
+    }
+
+    /* 
+       foreach(string stack in palancas)
+       {
+           Debug.Log(stack);
+       }
+*/
+    protected float GetMovimientoDelObjeto()
+    {
+        if (maquina.MovimientoInyectado != 0)
+        {
+            return maquina.MovimientoInyectado;
+        }
+        else
+        {
+            return Input.GetAxis(maquina.Horizontal);
         }
     }
 
@@ -117,25 +254,11 @@ public class MovimientoGenerico : MonoBehaviour
         deltaTimeLocal = min;
         y = 0;
         alturamax = -1;
-        estaEnPiso = true;
         GetComponent<Animator>().SetBool("tocarPiso", true);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    public void AplicarFuerzaPersonaje(float fuerzaEnX)
     {
-        if (comenzarContar)
-        {
-            ResetObject();
-        }
-    }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (comenzarContar)
-        {
-            ResetObject();
-        }
-    }
-    public bool IsTocarPiso
-    {
-        set { estaEnPiso = value; }
+        rb.AddForce(new Vector2(fuerzaEnX, 0));
     }
 }
