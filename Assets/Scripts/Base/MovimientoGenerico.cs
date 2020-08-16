@@ -216,15 +216,18 @@ public class MovimientoGenerico : MonoBehaviour
                 {
                     break;
                 }
-                Debug.Log(result.Value.ToList().Count +" - "+ i+ " stack "+ stack);
                 if (result.Value.ToList().Count == i)
                 {
-                    //instaciamos el objeto
-                    //llenamos los datos que le falten (padre)
-                    Debug.Log(result.Key);
-                    GameObject fireBall = GetComponent<InterfazDeMetodosGenericosParaAcciones>().FireBallPrefab;
-                    GetComponent<InterfazDeMetodosGenericosParaAcciones>().IsFireBall = true;
-                    Instantiate(fireBall, gameObject.transform.position, fireBall.transform.rotation).GetComponent<ReferenciaAlPadre>().padre = gameObject;
+                    switch (result.Key)
+                    {
+                        case SecuenciasPermitidas.FIREBALL:
+                            //instaciamos el objeto
+                            //llenamos los datos que le falten (padre)
+                            GameObject fireBall = GetComponent<InterfazDeMetodosGenericosParaAcciones>().FireBallPrefab;
+                            GetComponent<InterfazDeMetodosGenericosParaAcciones>().IsFireBall = true;
+                            Instantiate(fireBall, gameObject.transform.position, fireBall.transform.rotation).GetComponent<ReferenciaAlPadre>().padre = gameObject;
+                            break;
+                    }
                 }
             }
         }
