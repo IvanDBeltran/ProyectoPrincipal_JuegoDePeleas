@@ -20,8 +20,6 @@ public interface InterfazDeMetodosGenericosParaAcciones
     bool IsPatadaActivo { get; set; }
     bool IsFireBall { get; set; }
 
-    float TiempoVulnerable { get; set; }
-
     float TiempoRecuperacion { get; set; }
 
     float TiempoGolpeado { get; set; }

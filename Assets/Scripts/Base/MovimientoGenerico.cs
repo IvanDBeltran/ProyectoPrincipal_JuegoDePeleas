@@ -12,7 +12,7 @@ public class MovimientoGenerico : MonoBehaviour
     private BaseMaquinaEstadosFinita maquina;
     [Range(0f, 2f)]
     [SerializeField]
-    private float tiempoDeTomaDeControl;
+    private float tiempoDeReseteoDeCola;
     [SerializeField]
     private Queue<string> palancas;
     [SerializeField]
@@ -147,28 +147,32 @@ public class MovimientoGenerico : MonoBehaviour
     }
     public void LogearComandosIngresados()
     {
-        if (deltaTimeLocalParaControl < tiempoDeTomaDeControl || botonPrecionado != KeyCode.None)
+        if (deltaTimeLocalParaControl < tiempoDeReseteoDeCola)
         {
-            string loQueVamosLogear;
-
-            if (maquina.PatadaDebil == botonPrecionado)
+            string loQueVamosLogear = string.Empty;
+            if (botonPrecionado != KeyCode.None)
             {
-                loQueVamosLogear = SecuenciasPermitidas.PATADADEBIL;
-            }else if (maquina.PatadaFuerte == botonPrecionado)
-            {
-                loQueVamosLogear = SecuenciasPermitidas.PATADAFUERTE;
-            }else if (maquina.PunioDebil == botonPrecionado)
-            {
-                loQueVamosLogear = SecuenciasPermitidas.PUNIODEBIL;
-            }else if (maquina.PunioFuerte == botonPrecionado)
-            {
-                loQueVamosLogear = SecuenciasPermitidas.PUNIOFUERTE;
-            }
-            else
+                if (maquina.PatadaDebil == botonPrecionado)
+                {
+                    loQueVamosLogear = SecuenciasPermitidas.PATADADEBIL;
+                }
+                else if (maquina.PatadaFuerte == botonPrecionado)
+                {
+                    loQueVamosLogear = SecuenciasPermitidas.PATADAFUERTE;
+                }
+                else if (maquina.PunioDebil == botonPrecionado)
+                {
+                    loQueVamosLogear = SecuenciasPermitidas.PUNIODEBIL;
+                }
+                else if (maquina.PunioFuerte == botonPrecionado)
+                {
+                    loQueVamosLogear = SecuenciasPermitidas.PUNIOFUERTE;
+                }
+            }else
             {
                 loQueVamosLogear = CardinalidadEscritaHorizontal() + CardinalidadEscritaVertical();
             }
-
+            Debug.Log(loQueVamosLogear);
             //comprobar si el que vamos a ingresar ya esta en la ultima posicion
             if (palancas.Count >= 1)
             {
@@ -196,6 +200,7 @@ public class MovimientoGenerico : MonoBehaviour
         {
             //Debug.LogWarning(">>>>>"+ deltaTimeLocalParaControl);
             deltaTimeLocalParaControl = 0;
+            palancas = new Queue<string>();
         }
 
     }
@@ -211,10 +216,9 @@ public class MovimientoGenerico : MonoBehaviour
                 {
                     i++;
                     //continue;
-                }
-                else
+                }else
                 {
-                    break;
+                    continue;
                 }
                 if (result.Value.ToList().Count == i)
                 {
@@ -228,6 +232,8 @@ public class MovimientoGenerico : MonoBehaviour
                             Instantiate(fireBall, gameObject.transform.position, fireBall.transform.rotation).GetComponent<ReferenciaAlPadre>().padre = gameObject;
                             break;
                     }
+                    //reseteamos la cola de comnandos
+                    palancas = new Queue<string>();
                 }
             }
         }

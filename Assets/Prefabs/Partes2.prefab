@@ -1241,8 +1241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6c27c9b1d9bcb479e76ec9f1aa1370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoDeTomaDeControl: 0.1
-  stackMaximo: 7
+  tiempoDeTomaDeControl: 0.8
+  stackMaximo: 6
+  botonPrecionado: 0
 --- !u!114 &6724071895420076316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,11 +1269,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 0
-  tiempoVulnerable: 0.1
   tiempoRecuperacion: 0.1
   tiempoGolpeado: 0.1
   fuerzaGolpeDebil: 800
   fuerzaGolpeFuerte: 1000
+  fireBallPrefab: {fileID: 3952700586776242013, guid: 79c8f1deea4afc642b453fb29ea0ba30,
+    type: 3}
 --- !u!114 &2506328745452764299
 MonoBehaviour:
   m_ObjectHideFlags: 0

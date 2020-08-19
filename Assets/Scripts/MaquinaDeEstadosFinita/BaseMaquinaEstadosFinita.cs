@@ -16,6 +16,7 @@ public abstract class BaseMaquinaEstadosFinita : MonoBehaviour
     protected string baseNombreHorizontal = "Horizontal_Player";
     protected string baseNombreVertical = "Vertical_Player";
     protected MovimientoGenerico movimientoDelObjeto;
+    protected bool terminoLaAnimacion = false;
     public abstract void Salir();
     public virtual void Start()
     {

@@ -4,7 +4,6 @@ using System;
 
 public class EstadoAtacar : BaseMaquinaEstadosFinita
 {
-    private bool terminoLaAnimacion = false;
     public KeyCode botonPrecionado;
     public override void Start()
     {
@@ -41,7 +40,11 @@ public class EstadoAtacar : BaseMaquinaEstadosFinita
     {
         if (terminoLaAnimacion)
         {
-            return typeof(EstadoVulnerable);
+            return typeof(EstadoEstar);
+        }
+        if (player.FueGolpeado)
+        {
+            return typeof(EstadoGolpeado);
         }
         return GetType();
     }

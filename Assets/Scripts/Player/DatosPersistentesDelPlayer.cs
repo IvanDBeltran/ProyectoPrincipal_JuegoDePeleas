@@ -26,7 +26,7 @@ public class DatosPersistentesDelPlayer : MonoBehaviour
     public void MostrarLetreroDeCombos()
     {
         letrero.gameObject.SetActive(true);
-        letrero.text = string.Format("{0} Golpes", cantidadDeGolpes);
+        letrero.text = string.Format("Combo {0}", cantidadDeGolpes);
     }
     public void OcultarLetreroDeCombos()
     {

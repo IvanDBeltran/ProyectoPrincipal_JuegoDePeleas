@@ -11,10 +11,6 @@ public class EstadisticasBase : MonoBehaviour, InterfazDeMetodosGenericosParaAcc
     private float speedJump;
     private float speed;
     [Header("Tiempos de estados")]
-    [Tooltip("Tiempo en volver a golpear")]
-    [Range(0f, 1f)]
-    [SerializeField]
-    private float tiempoVulnerable;
     [Tooltip("Tiempo en volver al combate")]
     [Range(0f, 1f)]
     [SerializeField]
@@ -77,7 +73,6 @@ public class EstadisticasBase : MonoBehaviour, InterfazDeMetodosGenericosParaAcc
         set { fuerza += value; }
     }
 
-    public float TiempoVulnerable { get => tiempoVulnerable; set => tiempoVulnerable = value; }
     public float TiempoRecuperacion { get => tiempoRecuperacion; set => tiempoRecuperacion = value; }
     public float TiempoGolpeado { get => tiempoGolpeado; set => tiempoGolpeado = value; }
     public float FuerzaGolpeDebil { get => fuerzaGolpeDebil; set => fuerzaGolpeDebil = value; }
@@ -108,8 +103,6 @@ public class EstadisticasBase : MonoBehaviour, InterfazDeMetodosGenericosParaAcc
     private Queue<string> CrearSecuenciaFireBall()
     {
         Queue<string> fireBall = new Queue<string>();
-        fireBall.Enqueue(SecuenciasPermitidas.ATRAS);
-        fireBall.Enqueue(SecuenciasPermitidas.DIAGONALATRAS);
         fireBall.Enqueue(SecuenciasPermitidas.ABAJO);
         fireBall.Enqueue(SecuenciasPermitidas.DIAGONALDELANTE);
         fireBall.Enqueue(SecuenciasPermitidas.DELANTE);
