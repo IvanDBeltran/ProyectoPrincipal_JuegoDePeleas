@@ -9,6 +9,7 @@ public class EstadisticasBase : MonoBehaviour, InterfazDeMetodosGenericosParaAcc
     private float patada, punio;
     private bool estaEnElpiso, isPunio, isPatada, isFireBall;
     private float speedJump;
+    [SerializeField]
     private float speed;
     [Header("Tiempos de estados")]
     [Tooltip("Tiempo en volver al combate")]
@@ -95,7 +96,9 @@ public class EstadisticasBase : MonoBehaviour, InterfazDeMetodosGenericosParaAcc
         //agregamos la secuencia de fireball
         ListadoDeSecuencias = new Dictionary<string, Queue<string>>
         {
-            { SecuenciasPermitidas.FIREBALL, CrearSecuenciaFireBall() }
+            { SecuenciasPermitidas.FIREBALL, CrearSecuenciaFireBall() },
+            { SecuenciasPermitidas.CORRER, CrearSecuenciaDeCorrer() },
+            { SecuenciasPermitidas.SALTARHACIAATRAS , CrearSecuenciaDeSaltarHaciaAtras() }
         };
 
     }
@@ -109,6 +112,25 @@ public class EstadisticasBase : MonoBehaviour, InterfazDeMetodosGenericosParaAcc
         fireBall.Enqueue(SecuenciasPermitidas.PUNIODEBIL);
         return fireBall;
     }
+
+    private Queue<string> CrearSecuenciaDeCorrer()
+    {
+        Queue<string> correr = new Queue<string>();
+        correr.Enqueue(SecuenciasPermitidas.DELANTE);
+        correr.Enqueue(SecuenciasPermitidas.VACIO);
+        correr.Enqueue(SecuenciasPermitidas.DELANTE);
+        return correr;
+    }
+
+    private Queue<string> CrearSecuenciaDeSaltarHaciaAtras()
+    {
+        Queue<string> correr = new Queue<string>();
+        correr.Enqueue(SecuenciasPermitidas.ATRAS);
+        correr.Enqueue(SecuenciasPermitidas.VACIO);
+        correr.Enqueue(SecuenciasPermitidas.ATRAS);
+        return correr;
+    }
+
 
     public void QuitarVida(float vidaRestar)
     {

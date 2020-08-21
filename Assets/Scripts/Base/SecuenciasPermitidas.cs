@@ -16,5 +16,7 @@ public static class SecuenciasPermitidas
     public const string VACIO = "";
     //poderes!!
     public const string FIREBALL = "fireball!!!!!!";
+    public const string CORRER = "Correr";
+    public const string SALTARHACIAATRAS = "Saltar hacia atras";
 
 }

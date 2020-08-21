@@ -8,13 +8,15 @@ public class MovimientoGenerico : MonoBehaviour
 {
     private bool comenzarContar, logeoDeSalto;
     private Rigidbody2D rb;
-    private float min, max, x, y, deltaTimeLocal, alturamax, deltaTimeLocalParaControl;
+    private float min, max, x, y, deltaTimeLocal, alturamax, deltaTimeLocalParaControl, velocidadDash, deltaTimeLocalParaDashHaciaAtras;
+    [SerializeField]
+    private float fuerzaDeSaltoHaciaAtras, fuerzaHaciaArriba, tiempoDeDashHaciaAtras;
+    private bool correrHaciaAtras = false;
     private BaseMaquinaEstadosFinita maquina;
     [Range(0f, 2f)]
     [SerializeField]
     private float tiempoDeReseteoDeCola;
-    [SerializeField]
-    private Queue<string> palancas;
+    private Queue<string> palancas, dash;
     [SerializeField]
     private int stackMaximo;
     [SerializeField]
@@ -29,99 +31,119 @@ public class MovimientoGenerico : MonoBehaviour
         deltaTimeLocal = min;
         maquina = GetComponent<BaseMaquinaEstadosFinita>();
         palancas = new Queue<string>();
+        velocidadDash = 1;
     }
     private void Update()
     {
-        if (!comenzarContar)
+        if (correrHaciaAtras)
         {
-            if (GetMovimientoDelObjeto() > 0)
+            Debug.Log("X " + x + " speed " + maquina.AccionesDelPersonaje.Speed + " Fuerza " + fuerzaDeSaltoHaciaAtras);
+            rb.velocity = new Vector2(x * maquina.AccionesDelPersonaje.Speed * fuerzaDeSaltoHaciaAtras, y);
+            deltaTimeLocalParaDashHaciaAtras += Time.deltaTime;
+            if (deltaTimeLocalParaDashHaciaAtras >= tiempoDeDashHaciaAtras)
             {
-                x = 1;
-                LogearComandosIngresados();
+                deltaTimeLocalParaDashHaciaAtras = 0;
+                correrHaciaAtras = false;
             }
-            if (GetMovimientoDelObjeto() < 0)
-            {
-                x = -1;
-                LogearComandosIngresados();
-            }
-            if (GetMovimientoDelObjeto() == 0)
-            {
-                x = 0;
-            }
-            if (Input.GetAxis(maquina.Vertical) > 0)
-            {
-                maquina.ComponenteAnimacion.SetTrigger("saltar");
-                maquina.ComponenteAnimacion.SetBool("tocarPiso", false);
-                maquina.AccionesDelPersonaje.EstaEnElPiso = false;
-                comenzarContar = true;
-                LogearComandosIngresados();
-            }
-            else if (Input.GetAxis(maquina.Vertical) < 0)
-            {
-                LogearComandosIngresados();
-            }
-            deltaTimeLocalParaControl += Time.deltaTime;
-        }
-
-        if (comenzarContar)
-        {
-
-            deltaTimeLocal += (Time.deltaTime * 2);
-            //ir modificando a una funcion matematica mas suave en su movimiento
-            y = Mathf.Cos(deltaTimeLocal) * maquina.AccionesDelPersonaje.SpeedJump;
-            //Como por ejemplo
-            //2x^(3)+2
-            //y = ((2 * Mathf.Pow(deltaTimeLocal, 3)) + 2) * speedJump;
-            if (y > alturamax)
-            {
-                alturamax = y;
-            }
-            else
-            {
-                y *= -1;
-            }
-            if (deltaTimeLocal >= max)
-            {
-                ResetObject();
-            }
-            LogearComandosIngresados();
         }
         else
         {
-            y = rb.velocity.y;
+            if (!comenzarContar)
+            {
+                if (GetMovimientoDelObjeto() > 0)
+                {
+                    x = 1;
+                    LogearComandosIngresados();
+                }
+                if (GetMovimientoDelObjeto() < 0)
+                {
+                    x = -1;
+                    LogearComandosIngresados();
+                }
+                if (GetMovimientoDelObjeto() == 0)
+                {
+                    x = 0;
+                    velocidadDash = 1;
+                    GetComponent<BaseMaquinaEstadosFinita>().ComponenteAnimacion.SetBool("correr", false);
+                    LogearComandosIngresados();
+                }
+                if (Input.GetAxis(maquina.Vertical) > 0)
+                {
+                    maquina.ComponenteAnimacion.SetTrigger("saltar");
+                    maquina.ComponenteAnimacion.SetBool("tocarPiso", false);
+                    maquina.AccionesDelPersonaje.EstaEnElPiso = false;
+                    comenzarContar = true;
+                    LogearComandosIngresados();
+                }
+                else if (Input.GetAxis(maquina.Vertical) < 0)
+                {
+                    LogearComandosIngresados();
+                }
+                deltaTimeLocalParaControl += Time.deltaTime;
+            }
+
+            if (comenzarContar)
+            {
+
+                deltaTimeLocal += (Time.deltaTime * 2);
+                //ir modificando a una funcion matematica mas suave en su movimiento
+                y = Mathf.Cos(deltaTimeLocal) * maquina.AccionesDelPersonaje.SpeedJump;
+                //Como por ejemplo
+                //2x^(3)+2
+                //y = ((2 * Mathf.Pow(deltaTimeLocal, 3)) + 2) * speedJump;
+                if (y > alturamax)
+                {
+                    alturamax = y;
+                }
+                else
+                {
+                    y *= -1;
+                }
+                if (deltaTimeLocal >= max)
+                {
+                    ResetObject();
+                }
+                LogearComandosIngresados();
+            }
+            else
+            {
+                y = rb.velocity.y;
+            }
+            rb.velocity = new Vector2(x * maquina.AccionesDelPersonaje.Speed * velocidadDash, y);
         }
-        rb.velocity = new Vector2(x * maquina.AccionesDelPersonaje.Speed, y);
-        //rb.velocity = new Vector2(x * speed, rb.velocity.y);
         GetComponent<Animator>().SetFloat("velocidad", Mathf.Abs(rb.velocity.x));
     }
 
     public string CardinalidadEscritaHorizontal()
     {
+        string resultadoDelMovimiento;
         if (GetMovimientoDelObjeto() > 0)
         {
             if (GetComponent<BaseMaquinaEstadosFinita>().CardinalidadDeHaciaAtras() > 0)
             {
-                return SecuenciasPermitidas.ATRAS;
+                resultadoDelMovimiento = SecuenciasPermitidas.ATRAS;
             }
             else
             {
-                return SecuenciasPermitidas.DELANTE;
+                resultadoDelMovimiento = SecuenciasPermitidas.DELANTE;
             }
         }else if (GetMovimientoDelObjeto() < 0)
         {
             if (GetComponent<BaseMaquinaEstadosFinita>().CardinalidadDeHaciaAtras() < 0)
             {
-                return SecuenciasPermitidas.ATRAS;
+                resultadoDelMovimiento = SecuenciasPermitidas.ATRAS;
             }
             else
             {
-                return SecuenciasPermitidas.DELANTE;
+                resultadoDelMovimiento = SecuenciasPermitidas.DELANTE;
                 
             }
         }else
         {
-            return SecuenciasPermitidas.VACIO;
+            resultadoDelMovimiento = SecuenciasPermitidas.VACIO;
         }
+
+        return resultadoDelMovimiento;
     }
 
     public string CardinalidadEscritaVertical()
@@ -172,7 +194,6 @@ public class MovimientoGenerico : MonoBehaviour
             {
                 loQueVamosLogear = CardinalidadEscritaHorizontal() + CardinalidadEscritaVertical();
             }
-            Debug.Log(loQueVamosLogear);
             //comprobar si el que vamos a ingresar ya esta en la ultima posicion
             if (palancas.Count >= 1)
             {
@@ -180,11 +201,28 @@ public class MovimientoGenerico : MonoBehaviour
                 {
                     palancas.Enqueue(loQueVamosLogear);
                 }
+                /*else
+                {
+                    if (loQueVamosLogear == SecuenciasPermitidas.DELANTE)
+                    {
+                        if (debeContarParaElDash)
+                        {
+                            Debug.LogError("Dash!");
+                            debeContarParaElDash = false;
+                            deltaTimeLocalParaDash = 0;
+                        }
+                        else
+                        {
+                            debeContarParaElDash = true;
+                        }
+                    }
+                }*/
             }
             else
             {
                 palancas.Enqueue(loQueVamosLogear);
             }
+            //Debug.LogError(loQueVamosLogear);
             //seteamos el boton para que regrese a su estado original! sellado magico!!!!!
             botonPrecionado = KeyCode.None;
             if (palancas.Count > stackMaximo)
@@ -194,7 +232,6 @@ public class MovimientoGenerico : MonoBehaviour
             //analizaremos lo que esta guardado, contra lo que tenemos almacenado en el diccionario de secuencias
 
             DetectorDeConvinaciones();
-            //Debug.LogWarning("");
         }
         else
         {
@@ -230,6 +267,19 @@ public class MovimientoGenerico : MonoBehaviour
                             GameObject fireBall = GetComponent<InterfazDeMetodosGenericosParaAcciones>().FireBallPrefab;
                             GetComponent<InterfazDeMetodosGenericosParaAcciones>().IsFireBall = true;
                             Instantiate(fireBall, gameObject.transform.position, fireBall.transform.rotation).GetComponent<ReferenciaAlPadre>().padre = gameObject;
+                            break;
+                        case SecuenciasPermitidas.CORRER:
+                            GetComponent<BaseMaquinaEstadosFinita>().ComponenteAnimacion.SetBool("correr", true);
+                            Debug.LogError("Corre perra... corrre!");
+                            velocidadDash = 4;
+                            //posiblemente activemos una animación
+                            break;
+
+                        case SecuenciasPermitidas.SALTARHACIAATRAS:
+                            Debug.LogError("Esquivalo!");
+                            correrHaciaAtras = true;
+                            //rb.AddForce(new Vector2(GetComponent<BaseMaquinaEstadosFinita>().CardinalidadDeHaciaAtras() * fuerzaDeSaltoHaciaAtras, fuerzaHaciaArriba));
+                            GetComponent<BaseMaquinaEstadosFinita>().ComponenteAnimacion.SetBool("dash",true);
                             break;
                     }
                     //reseteamos la cola de comnandos

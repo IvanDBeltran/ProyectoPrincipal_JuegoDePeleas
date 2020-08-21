@@ -68,4 +68,9 @@ public class MovimientoDeSprite : MonoBehaviour
     {
         get { return patada; }
     }
+
+    public void finDeDash()
+    {
+        GetComponent<Animator>().SetBool("dash", false);
+    }
 }
