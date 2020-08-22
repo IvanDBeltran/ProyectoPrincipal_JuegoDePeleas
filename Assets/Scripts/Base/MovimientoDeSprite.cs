@@ -56,17 +56,13 @@ public class MovimientoDeSprite : MonoBehaviour
     public void FinalDePunio()
     {
         punio = false;
+        //GetComponent<Animator>().SetBool("punio", punio);
+    }
+
+    public void FinalDragonPunch()
+    {
+        punio = false;
         GetComponent<Animator>().SetBool("punio", punio);
-    }
-
-    public Boolean Punio
-    {
-        get { return punio; }
-    }
-
-    public Boolean Patada
-    {
-        get { return patada; }
     }
 
     public void finDeDash()

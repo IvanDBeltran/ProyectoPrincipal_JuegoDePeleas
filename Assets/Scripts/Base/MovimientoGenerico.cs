@@ -264,8 +264,8 @@ public class MovimientoGenerico : MonoBehaviour
                         case SecuenciasPermitidas.FIREBALL:
                             //instaciamos el objeto
                             //llenamos los datos que le falten (padre)
-                            GameObject fireBall = GetComponent<InterfazDeMetodosGenericosParaAcciones>().FireBallPrefab;
                             GetComponent<InterfazDeMetodosGenericosParaAcciones>().IsFireBall = true;
+                            GameObject fireBall = GetComponent<InterfazDeMetodosGenericosParaAcciones>().FireBallPrefab;
                             Instantiate(fireBall, gameObject.transform.position, fireBall.transform.rotation).GetComponent<ReferenciaAlPadre>().padre = gameObject;
                             break;
                         case SecuenciasPermitidas.CORRER:
@@ -281,7 +281,12 @@ public class MovimientoGenerico : MonoBehaviour
                             //rb.AddForce(new Vector2(GetComponent<BaseMaquinaEstadosFinita>().CardinalidadDeHaciaAtras() * fuerzaDeSaltoHaciaAtras, fuerzaHaciaArriba));
                             GetComponent<BaseMaquinaEstadosFinita>().ComponenteAnimacion.SetBool("dash",true);
                             break;
+                        case SecuenciasPermitidas.DRAGONPUNCH:
+                            //accedemos a las estadisticas base, y le colocamos el dragon punch en true
+                            GetComponent<InterfazDeMetodosGenericosParaAcciones>().IsDragonPunch = true;
+                            break;
                     }
+                    Debug.Log(result.Key);
                     //reseteamos la cola de comnandos
                     palancas = new Queue<string>();
                 }
@@ -315,6 +320,8 @@ public class MovimientoGenerico : MonoBehaviour
         alturamax = -1;
         GetComponent<Animator>().SetBool("tocarPiso", true);
     }
+    public bool ComenzarContar { set => comenzarContar = value; }
+    public float X { set => x = value; }
 
     public void AplicarFuerzaPersonaje(float fuerzaEnX)
     {

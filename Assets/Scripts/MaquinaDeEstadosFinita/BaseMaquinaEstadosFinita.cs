@@ -173,4 +173,28 @@ public abstract class BaseMaquinaEstadosFinita : MonoBehaviour
     public KeyCode PunioDebil { get => punioDebil; }
     public KeyCode PunioFuerte { get => punioFuerte; }
 
+    public virtual void FinalDePatada()
+    {
+        accionesDelPersonaje.IsPatadaActivo = false;
+        GetComponent<Animator>().SetBool("patada", false);
+        terminoLaAnimacion = true;
+    }
+    public virtual void FinalDePunio()
+    {
+        accionesDelPersonaje.IsPunioActivo = false;
+        GetComponent<Animator>().SetBool("punio", false);
+        terminoLaAnimacion = true;
+    }
+
+    public virtual void FinalDragonPunch()
+    {
+        accionesDelPersonaje.IsDragonPunch = false;
+        GetComponent<Animator>().SetBool("dragonPunch", false);
+        terminoLaAnimacion = true;
+    }
+
+    public void FinDeDash()
+    {
+        GetComponent<Animator>().SetBool("dash", false);
+    }
 }

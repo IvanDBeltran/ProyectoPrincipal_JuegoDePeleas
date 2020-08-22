@@ -46,7 +46,11 @@ public class ColisionesDePlayer : MonoBehaviour
         }else if (instanciaAComponenteDeDanioMetodo.IsFireBall)
         {
             fuerzaAQuitar = 100;
+        }else if (instanciaAComponenteDeDanioMetodo.IsDragonPunch)
+        {
+            fuerzaAQuitar = instanciaAComponenteDeDanioMetodo.FuerzaDragonPunch;
         }
+
         //Debug.Log("Fuerza a quitar " + fuerzaAQuitar);
         return fuerzaAQuitar;
     }
@@ -63,6 +67,9 @@ public class ColisionesDePlayer : MonoBehaviour
         else if (instanciaAComponenteDeOponente.IsPatadaActivo)
         {
             fuerzaAplicar = instanciaAComponenteDeOponente.FuerzaGolpeFuerte;
+        }else if (instanciaAComponenteDeOponente.IsDragonPunch)
+        {
+            fuerzaAplicar = instanciaAComponenteDeOponente.FuerzaEmpujeDragonPunch;
         }
         //ahora que sabemos cual es la fuerza, debemos buscar la cardinalidad de el
         fuerzaAplicar *= GetComponent<BaseMaquinaEstadosFinita>().CardinalidadDeHaciaAtras();

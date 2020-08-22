@@ -18,5 +18,6 @@ public static class SecuenciasPermitidas
     public const string FIREBALL = "fireball!!!!!!";
     public const string CORRER = "Correr";
     public const string SALTARHACIAATRAS = "Saltar hacia atras";
+    public const string DRAGONPUNCH = "dragonPunch!!!";
 
 }

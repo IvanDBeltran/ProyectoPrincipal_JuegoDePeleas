@@ -32,7 +32,11 @@ public interface InterfazDeMetodosGenericosParaAcciones
     //Fuerzas por golpe, para el desplazamiento
     float FuerzaGolpeDebil { get; set; }
     float FuerzaGolpeFuerte { get; set; }
+    float FuerzaEmpujeDragonPunch { get; set; }
+    float FuerzaDragonPunch { get; set; }
+
     GameObject FireBallPrefab { get; }
+    bool IsDragonPunch { get ; set; }
 
     Dictionary<string, Queue<string>> ListadoDeSecuencias { get; }
 }

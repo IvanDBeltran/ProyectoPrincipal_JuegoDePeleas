@@ -8,17 +8,24 @@ public class EstadoAtacar : BaseMaquinaEstadosFinita
     public override void Start()
     {
         base.Start();
-        if ((botonPrecionado == patadaDebil || botonPrecionado == patadaFuerte) && !accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo /*&& !accionesDelPersonaje.IsFireBall*/)
+        if ((botonPrecionado == patadaDebil || botonPrecionado == patadaFuerte) && !accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo && !accionesDelPersonaje.IsDragonPunch /*&& !accionesDelPersonaje.IsFireBall*/)
         {
             accionesDelPersonaje.IsPatadaActivo = true;
             componenteDeAnimacion.SetBool("patada", true);
         }
 
-        if ((botonPrecionado == punioDebil || botonPrecionado == punioFuerte) && !accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo/* && !accionesDelPersonaje.IsFireBall*/)
+        if ((botonPrecionado == punioDebil || botonPrecionado == punioFuerte) && !accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo && !accionesDelPersonaje.IsDragonPunch/* && !accionesDelPersonaje.IsFireBall*/)
         {
             accionesDelPersonaje.IsPunioActivo = true;
             componenteDeAnimacion.SetBool("punio", true);
         }
+        if (!accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo && accionesDelPersonaje.IsDragonPunch/* && !accionesDelPersonaje.IsFireBall*/)
+        {
+            componenteDeAnimacion.SetBool("dragonPunch", true);
+            movimientoDelObjeto.ComenzarContar = true;
+            movimientoDelObjeto.X = 0;
+        }
+        
 
         /*if (!accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo && accionesDelPersonaje.IsFireBall)
         {
@@ -48,16 +55,5 @@ public class EstadoAtacar : BaseMaquinaEstadosFinita
         }
         return GetType();
     }
-    public void FinalDePatada()
-    {
-        accionesDelPersonaje.IsPatadaActivo = false;
-        GetComponent<Animator>().SetBool("patada", false);
-        terminoLaAnimacion = true;
-    }
-    public void FinalDePunio()
-    {
-        accionesDelPersonaje.IsPunioActivo = false;
-        GetComponent<Animator>().SetBool("punio", false);
-        terminoLaAnimacion = true;
-    }
+
 }
