@@ -7,7 +7,7 @@ public class EstadisticasBase : MonoBehaviour, InterfazDeMetodosGenericosParaAcc
     private float vida;
     private float fuerza;
     private float patada, punio;
-    private bool estaEnElpiso, isPunio, isPatada, isFireBall, isDragonPunch;
+    private bool estaEnElpiso, isPunio, isPatada, isFireBall, isDragonPunch, saltaAlDragonPunch;
     private float speedJump;
     [SerializeField]
     private float speed;
@@ -26,6 +26,8 @@ public class EstadisticasBase : MonoBehaviour, InterfazDeMetodosGenericosParaAcc
     private float speedFireBal;
     [SerializeField]
     private GameObject fireBallPrefab;
+    [SerializeField]
+    private float fuerzaDeSaltoHaciaAtras, fuerzaHaciaArriba, tiempoDeDashHaciaAtras;
 
     public bool IsPunioActivo
     {
@@ -79,9 +81,15 @@ public class EstadisticasBase : MonoBehaviour, InterfazDeMetodosGenericosParaAcc
     public float FuerzaGolpeDebil { get => fuerzaGolpeDebil; set => fuerzaGolpeDebil = value; }
     public float FuerzaGolpeFuerte { get => fuerzaGolpeFuerte; set => fuerzaGolpeFuerte = value; }
     public float FuerzaDragonPunch { get => fuerzaDragonPunch; set => fuerzaDragonPunch = value; }
-    
+
+    public float FuerzaDeSaltoHaciaAtras { get => fuerzaDeSaltoHaciaAtras; set => fuerzaDeSaltoHaciaAtras = value; }
+    public float FuerzaHaciaArriba { get => fuerzaHaciaArriba; set => fuerzaHaciaArriba = value; }
+    public float TiempoDeDashHaciaAtras { get => tiempoDeDashHaciaAtras; set => tiempoDeDashHaciaAtras = value; }
+
     public bool IsDragonPunch { get => isDragonPunch; set => isDragonPunch = value; }
+    public bool SaltaAlDragonPunch { get => saltaAlDragonPunch; set => saltaAlDragonPunch = value; }
     
+
 
     public Dictionary<string, Queue<string>> ListadoDeSecuencias { get; private set; }
     public float SpeedFireBall { get => speedFireBal; set => speedFireBal = value; }

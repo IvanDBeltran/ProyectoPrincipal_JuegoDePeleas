@@ -1,5 +1,147 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &554891711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 554891712}
+  - component: {fileID: 554891713}
+  - component: {fileID: 554891714}
+  m_Layer: 0
+  m_Name: GolpeDeMano
+  m_TagString: golpe
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &554891712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554891711}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7995269753470651699}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &554891713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554891711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ff60d1aabe1504597555bc17915f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  padre: {fileID: 7995269751990730269}
+--- !u!61 &554891714
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554891711}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.01695431}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.3941452}
+  m_EdgeRadius: 0
+--- !u!1 &1423987835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1423987836}
+  - component: {fileID: 1423987837}
+  - component: {fileID: 1423987838}
+  m_Layer: 0
+  m_Name: Patada
+  m_TagString: golpe
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1423987836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423987835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.01, y: -0.58, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7995269751846765787}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1423987837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423987835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ff60d1aabe1504597555bc17915f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  padre: {fileID: 7995269751990730269}
+--- !u!61 &1423987838
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423987835}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &7995269751812405550
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,6 +204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7995269753028136328}
+  - {fileID: 1423987836}
   m_Father: {fileID: 7995269751990730258}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -211,7 +354,7 @@ GameObject:
   - component: {fileID: 7995269751990730261}
   - component: {fileID: 7995269751990730260}
   - component: {fileID: 7995269751990730263}
-  - component: {fileID: 7995269751990730283}
+  - component: {fileID: 1909577177}
   m_Layer: 0
   m_Name: Cyborg
   m_TagString: Player
@@ -321,9 +464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6c27c9b1d9bcb479e76ec9f1aa1370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuerzaDeSaltoHaciaAtras: 1
-  fuerzaHaciaArriba: 1
-  tiempoDeDashHaciaAtras: 1
   tiempoDeReseteoDeCola: 0.8
   stackMaximo: 10
   botonPrecionado: 0
@@ -365,7 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oponente: {fileID: 0}
---- !u!114 &7995269751990730283
+--- !u!114 &1909577177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -374,19 +514,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7995269751990730269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f08153fb7f438341a4db9e346c06f31, type: 3}
+  m_Script: {fileID: 11500000, guid: 3072a5a2cd7d0e84ba8a82177552616d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 200
-  speed: 10
-  tiempoRecuperacion: 0.1
+  vida: 0
+  speed: 0
+  tiempoRecuperacion: 1
   tiempoGolpeado: 0.1
-  fuerzaGolpeDebil: 10
-  fuerzaGolpeFuerte: 20
-  fuerzaDragonPunch: 30
-  fuerzaEmpujeDragonPunch: 10
+  fuerzaGolpeDebil: 800
+  fuerzaGolpeFuerte: 1000
+  fuerzaDragonPunch: 0
+  fuerzaEmpujeDragonPunch: 4000
   fireBallPrefab: {fileID: 3952700586776242013, guid: 79c8f1deea4afc642b453fb29ea0ba30,
     type: 3}
+  fuerzaDeSaltoHaciaAtras: 3
+  fuerzaHaciaArriba: 0
+  tiempoDeDashHaciaAtras: 1
 --- !u!1 &7995269752129567157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,7 +1231,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.00702727, w: 0.9999753}
   m_LocalPosition: {x: 0.63572156, y: -0.00000004292322, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 554891712}
   m_Father: {fileID: 7995269751812405551}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

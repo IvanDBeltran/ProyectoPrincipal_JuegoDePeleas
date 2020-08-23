@@ -748,8 +748,8 @@ MonoBehaviour:
   - {fileID: 8269654461762892956}
   - {fileID: 8269654462692204619}
   m_Bounds:
-    m_Center: {x: 0.016910948, y: 0.01336734, z: 0}
-    m_Extent: {x: 0.10691097, y: 0.15028264, z: 0}
+    m_Center: {x: 0.016910948, y: 0.013367355, z: 0}
+    m_Extent: {x: 0.10691097, y: 0.15028265, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &8269654462220285834
@@ -977,8 +977,8 @@ MonoBehaviour:
   - {fileID: 8269654461366352144}
   - {fileID: 8269654461801585568}
   m_Bounds:
-    m_Center: {x: 0.0000049695373, y: 0.000000007450581, z: 0}
-    m_Extent: {x: 0.10499507, y: 0.11500001, z: 0}
+    m_Center: {x: 0.0000049695373, y: -0.000000014901161, z: 0}
+    m_Extent: {x: 0.10499507, y: 0.11500003, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!61 &8269654462497418816
@@ -1124,8 +1124,8 @@ MonoBehaviour:
   - {fileID: 8269654461754707983}
   - {fileID: 8269654463299272330}
   m_Bounds:
-    m_Center: {x: 0.0000050365925, y: -0.000000059604645, z: 0}
-    m_Extent: {x: 0.10499507, y: 0.11500001, z: 0}
+    m_Center: {x: 0.0000050142407, y: -0.000000014901161, z: 0}
+    m_Extent: {x: 0.104995035, y: 0.11500003, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!61 &8269654462571317543
@@ -1204,7 +1204,7 @@ GameObject:
   - component: {fileID: 7749680663019982575}
   - component: {fileID: 4317995433159753749}
   m_Layer: 0
-  m_Name: Partes2
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1296,9 +1296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6c27c9b1d9bcb479e76ec9f1aa1370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuerzaDeSaltoHaciaAtras: 3
-  fuerzaHaciaArriba: 1
-  tiempoDeDashHaciaAtras: 0.4
   tiempoDeReseteoDeCola: 1
   stackMaximo: 6
   botonPrecionado: 0
@@ -1328,7 +1325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vida: 0
   speed: 0
-  tiempoRecuperacion: 0.1
+  tiempoRecuperacion: 1
   tiempoGolpeado: 0.1
   fuerzaGolpeDebil: 800
   fuerzaGolpeFuerte: 1000
@@ -1336,6 +1333,9 @@ MonoBehaviour:
   fuerzaEmpujeDragonPunch: 4000
   fireBallPrefab: {fileID: 3952700586776242013, guid: 79c8f1deea4afc642b453fb29ea0ba30,
     type: 3}
+  fuerzaDeSaltoHaciaAtras: 0
+  fuerzaHaciaArriba: 0
+  tiempoDeDashHaciaAtras: 0
 --- !u!114 &2506328745452764299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1374,7 +1374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff9f884ea4757a48ab280a81281625a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumber: 1
+  playerNumber: 2
   FueGolpeado: 0
   letrero: {fileID: 0}
   cantidadDeGolpes: 0
@@ -1480,8 +1480,8 @@ MonoBehaviour:
   - {fileID: 8269654461236428475}
   - {fileID: 8269654463027745234}
   m_Bounds:
-    m_Center: {x: 0.019335203, y: 0.018772572, z: 0}
-    m_Extent: {x: 0.10933516, y: 0.14487737, z: 0}
+    m_Center: {x: 0.019335173, y: 0.018772602, z: 0}
+    m_Extent: {x: 0.10933519, y: 0.14487737, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &8269654462806292306

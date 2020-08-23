@@ -9,8 +9,6 @@ public class MovimientoGenerico : MonoBehaviour
     private bool comenzarContar, logeoDeSalto;
     private Rigidbody2D rb;
     private float min, max, x, y, deltaTimeLocal, alturamax, deltaTimeLocalParaControl, velocidadDash, deltaTimeLocalParaDashHaciaAtras;
-    [SerializeField]
-    private float fuerzaDeSaltoHaciaAtras, fuerzaHaciaArriba, tiempoDeDashHaciaAtras;
     private bool correrHaciaAtras = false;
     private BaseMaquinaEstadosFinita maquina;
     [Range(0f, 2f)]
@@ -37,10 +35,10 @@ public class MovimientoGenerico : MonoBehaviour
     {
         if (correrHaciaAtras)
         {
-            Debug.Log("X " + x + " speed " + maquina.AccionesDelPersonaje.Speed + " Fuerza " + fuerzaDeSaltoHaciaAtras);
-            rb.velocity = new Vector2(x * maquina.AccionesDelPersonaje.Speed * fuerzaDeSaltoHaciaAtras, y);
+            //Debug.Log("X " + x + " speed " + maquina.AccionesDelPersonaje.Speed + " Fuerza " + fuerzaDeSaltoHaciaAtras);
+            rb.velocity = new Vector2(x * maquina.AccionesDelPersonaje.Speed * GetComponent<BaseMaquinaEstadosFinita>().AccionesDelPersonaje.FuerzaDeSaltoHaciaAtras, y);
             deltaTimeLocalParaDashHaciaAtras += Time.deltaTime;
-            if (deltaTimeLocalParaDashHaciaAtras >= tiempoDeDashHaciaAtras)
+            if (deltaTimeLocalParaDashHaciaAtras >= GetComponent<BaseMaquinaEstadosFinita>().AccionesDelPersonaje.TiempoDeDashHaciaAtras)
             {
                 deltaTimeLocalParaDashHaciaAtras = 0;
                 correrHaciaAtras = false;
@@ -88,6 +86,13 @@ public class MovimientoGenerico : MonoBehaviour
                 deltaTimeLocal += (Time.deltaTime * 2);
                 //ir modificando a una funcion matematica mas suave en su movimiento
                 y = Mathf.Cos(deltaTimeLocal) * maquina.AccionesDelPersonaje.SpeedJump;
+
+                if (GetComponent<BaseMaquinaEstadosFinita>().GetType().Equals(typeof(EstadoAtacar)) && !GetComponent<InterfazDeMetodosGenericosParaAcciones>().SaltaAlDragonPunch)
+                {
+                    y = 0;
+                }
+
+
                 //Como por ejemplo
                 //2x^(3)+2
                 //y = ((2 * Mathf.Pow(deltaTimeLocal, 3)) + 2) * speedJump;

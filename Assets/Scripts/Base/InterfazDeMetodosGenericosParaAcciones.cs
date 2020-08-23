@@ -38,5 +38,11 @@ public interface InterfazDeMetodosGenericosParaAcciones
     GameObject FireBallPrefab { get; }
     bool IsDragonPunch { get ; set; }
 
+    bool SaltaAlDragonPunch { get; set; }
+
+    float FuerzaDeSaltoHaciaAtras { get; set; }
+    float FuerzaHaciaArriba { get; set; }
+    float TiempoDeDashHaciaAtras { get; set; }
+
     Dictionary<string, Queue<string>> ListadoDeSecuencias { get; }
 }
