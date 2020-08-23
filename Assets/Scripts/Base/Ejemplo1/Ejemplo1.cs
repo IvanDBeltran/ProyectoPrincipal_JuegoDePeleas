@@ -11,5 +11,6 @@ public class Ejemplo1 : EstadisticasBase
         Fuerza = 1;
         Speed = 2;
         SpeedJump = 10;
+        SaltaAlDragonPunch = true;
     }
 }

@@ -9,8 +9,8 @@ public class Cyborg : EstadisticasBase
         base.Awake();
         Vida += 100;
         Fuerza = 10;
-        Speed = 20;
-        SpeedJump = 10;
+        Speed = 1;
+        SpeedJump = 1;
         SaltaAlDragonPunch = false;
     }
 
