@@ -1,5 +1,76 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2063979285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063979286}
+  - component: {fileID: 2063979288}
+  - component: {fileID: 2063979287}
+  m_Layer: 0
+  m_Name: dragonPunch
+  m_TagString: golpe
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2063979286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063979285}
+  m_LocalRotation: {x: -0, y: -0, z: 0.6264324, w: 0.7794758}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8269654461420352439}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2063979288
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063979285}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2}
+  m_EdgeRadius: 0
+--- !u!114 &2063979287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063979285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ff60d1aabe1504597555bc17915f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  padre: {fileID: 8269654462751810064}
 --- !u!1 &8269654461236428474
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +381,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8269654462256749679}
+  - {fileID: 2063979286}
   m_Father: {fileID: 8269654463027745234}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -52.891003}
@@ -676,8 +748,8 @@ MonoBehaviour:
   - {fileID: 8269654461762892956}
   - {fileID: 8269654462692204619}
   m_Bounds:
-    m_Center: {x: 0.016910888, y: 0.01336734, z: 0}
-    m_Extent: {x: 0.10691091, y: 0.15028265, z: 0}
+    m_Center: {x: 0.016910948, y: 0.01336734, z: 0}
+    m_Extent: {x: 0.10691097, y: 0.15028264, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &8269654462220285834
@@ -905,8 +977,8 @@ MonoBehaviour:
   - {fileID: 8269654461366352144}
   - {fileID: 8269654461801585568}
   m_Bounds:
-    m_Center: {x: 0.0000052526593, y: -0.000000014901161, z: 0}
-    m_Extent: {x: 0.104995035, y: 0.11500004, z: 0}
+    m_Center: {x: 0.0000049695373, y: 0.000000007450581, z: 0}
+    m_Extent: {x: 0.10499507, y: 0.11500001, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!61 &8269654462497418816
@@ -1052,8 +1124,8 @@ MonoBehaviour:
   - {fileID: 8269654461754707983}
   - {fileID: 8269654463299272330}
   m_Bounds:
-    m_Center: {x: 0.0000050142407, y: 0.000000007450581, z: 0}
-    m_Extent: {x: 0.104995035, y: 0.11500001, z: 0}
+    m_Center: {x: 0.0000050365925, y: -0.000000059604645, z: 0}
+    m_Extent: {x: 0.10499507, y: 0.11500001, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!61 &8269654462571317543
@@ -1125,7 +1197,6 @@ GameObject:
   - component: {fileID: 8269654462751810065}
   - component: {fileID: 8269654462751810068}
   - component: {fileID: 8269654462751810067}
-  - component: {fileID: 8269654462751810069}
   - component: {fileID: 8269654462751810070}
   - component: {fileID: 6724071895420076316}
   - component: {fileID: 957083089}
@@ -1213,22 +1284,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0046595335, y: 0.0015968482}
   m_Size: {x: 0.34908146, y: 0.7223023}
   m_Direction: 0
---- !u!114 &8269654462751810069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8269654462751810064}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 267538a0ae7896441a2466191a737456, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidad: 0
-  punio: 0
-  patada: 0
-  playerNumber: 1
 --- !u!114 &8269654462751810070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1277,6 +1332,8 @@ MonoBehaviour:
   tiempoGolpeado: 0.1
   fuerzaGolpeDebil: 800
   fuerzaGolpeFuerte: 1000
+  fuerzaDragonPunch: 0
+  fuerzaEmpujeDragonPunch: 4000
   fireBallPrefab: {fileID: 3952700586776242013, guid: 79c8f1deea4afc642b453fb29ea0ba30,
     type: 3}
 --- !u!114 &2506328745452764299
@@ -1423,8 +1480,8 @@ MonoBehaviour:
   - {fileID: 8269654461236428475}
   - {fileID: 8269654463027745234}
   m_Bounds:
-    m_Center: {x: 0.019335233, y: 0.018772557, z: 0}
-    m_Extent: {x: 0.10933525, y: 0.1448774, z: 0}
+    m_Center: {x: 0.019335203, y: 0.018772572, z: 0}
+    m_Extent: {x: 0.10933516, y: 0.14487737, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &8269654462806292306

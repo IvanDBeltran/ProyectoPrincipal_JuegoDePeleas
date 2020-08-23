@@ -270,13 +270,13 @@ public class MovimientoGenerico : MonoBehaviour
                             break;
                         case SecuenciasPermitidas.CORRER:
                             GetComponent<BaseMaquinaEstadosFinita>().ComponenteAnimacion.SetBool("correr", true);
-                            Debug.LogError("Corre perra... corrre!");
+                            Debug.LogWarning("Corre perra... corrre!");
                             velocidadDash = 4;
                             //posiblemente activemos una animación
                             break;
 
                         case SecuenciasPermitidas.SALTARHACIAATRAS:
-                            Debug.LogError("Esquivalo!");
+                            Debug.LogWarning("Dash hacia atras!");
                             correrHaciaAtras = true;
                             //rb.AddForce(new Vector2(GetComponent<BaseMaquinaEstadosFinita>().CardinalidadDeHaciaAtras() * fuerzaDeSaltoHaciaAtras, fuerzaHaciaArriba));
                             GetComponent<BaseMaquinaEstadosFinita>().ComponenteAnimacion.SetBool("dash",true);

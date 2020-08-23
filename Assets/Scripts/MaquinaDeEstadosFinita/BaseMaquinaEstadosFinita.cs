@@ -172,6 +172,7 @@ public abstract class BaseMaquinaEstadosFinita : MonoBehaviour
     public KeyCode PatadaFuerte { get => patadaFuerte; }
     public KeyCode PunioDebil { get => punioDebil; }
     public KeyCode PunioFuerte { get => punioFuerte; }
+    public int PlayerNumber { get => playerNumber; }
 
     public virtual void FinalDePatada()
     {

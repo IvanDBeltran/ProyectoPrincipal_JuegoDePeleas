@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TMPro;
+using System;
 
 public class DatosPersistentesDelPlayer : MonoBehaviour
 {
@@ -32,4 +33,5 @@ public class DatosPersistentesDelPlayer : MonoBehaviour
     {
         letrero.gameObject.SetActive(false);
     }
+
 }

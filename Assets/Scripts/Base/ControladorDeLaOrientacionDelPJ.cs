@@ -6,6 +6,11 @@ public class ControladorDeLaOrientacionDelPJ : MonoBehaviour
 {
     public GameObject otroPlayer;
 
+    private void Start()
+    {
+        otroPlayer = GameObject.Find("ControladorDeEscenario").GetComponent<ControladorDeEscenario>().BuscandoPJContrario(GetComponent<DatosPersistentesDelPlayer>().playerNumber);
+    }
+
     private void Update()
     {
         //< 0 debe mirar a la derecha
