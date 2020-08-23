@@ -201,22 +201,6 @@ public class MovimientoGenerico : MonoBehaviour
                 {
                     palancas.Enqueue(loQueVamosLogear);
                 }
-                /*else
-                {
-                    if (loQueVamosLogear == SecuenciasPermitidas.DELANTE)
-                    {
-                        if (debeContarParaElDash)
-                        {
-                            Debug.LogError("Dash!");
-                            debeContarParaElDash = false;
-                            deltaTimeLocalParaDash = 0;
-                        }
-                        else
-                        {
-                            debeContarParaElDash = true;
-                        }
-                    }
-                }*/
             }
             else
             {
@@ -278,7 +262,6 @@ public class MovimientoGenerico : MonoBehaviour
                         case SecuenciasPermitidas.SALTARHACIAATRAS:
                             Debug.LogWarning("Dash hacia atras!");
                             correrHaciaAtras = true;
-                            //rb.AddForce(new Vector2(GetComponent<BaseMaquinaEstadosFinita>().CardinalidadDeHaciaAtras() * fuerzaDeSaltoHaciaAtras, fuerzaHaciaArriba));
                             GetComponent<BaseMaquinaEstadosFinita>().ComponenteAnimacion.SetBool("dash",true);
                             break;
                         case SecuenciasPermitidas.DRAGONPUNCH:
@@ -294,12 +277,6 @@ public class MovimientoGenerico : MonoBehaviour
         }
     }
 
-    /* 
-       foreach(string stack in palancas)
-       {
-           Debug.Log(stack);
-       }
-*/
     protected float GetMovimientoDelObjeto()
     {
         if (maquina.MovimientoInyectado != 0)

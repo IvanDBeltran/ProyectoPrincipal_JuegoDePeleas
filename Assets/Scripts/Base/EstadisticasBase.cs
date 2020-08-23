@@ -157,11 +157,6 @@ public class EstadisticasBase : MonoBehaviour, InterfazDeMetodosGenericosParaAcc
         Vida -= vidaRestar;
         //Despues de restar vida, le cambiamos el estado, en este caso de quien tenga la transicion hacia golpeado
         BaseMaquinaEstadosFinita estados = GetComponent<BaseMaquinaEstadosFinita>();
-        //TODO esto no se para que era pero lo dejo comentado
-        /*if (estados.GetType() == typeof(EstadoEstar))
-        {
-            estados.IsGolpeado = true;
-        }*/
         estados.IsGolpeado = true;
     }
 }

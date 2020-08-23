@@ -19,18 +19,12 @@ public class EstadoAtacar : BaseMaquinaEstadosFinita
             accionesDelPersonaje.IsPunioActivo = true;
             componenteDeAnimacion.SetBool("punio", true);
         }
-        if (!accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo && accionesDelPersonaje.IsDragonPunch/* && !accionesDelPersonaje.IsFireBall*/)
+        if (!accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo && accionesDelPersonaje.IsDragonPunch)
         {
             componenteDeAnimacion.SetBool("dragonPunch", true);
             movimientoDelObjeto.ComenzarContar = true;
             movimientoDelObjeto.X = 0;
         }
-        
-
-        /*if (!accionesDelPersonaje.IsPunioActivo && !accionesDelPersonaje.IsPatadaActivo && accionesDelPersonaje.IsFireBall)
-        {
-            componenteDeAnimacion.SetTrigger("fireball");
-        }*/
     }
     public override void Salir()
     {
